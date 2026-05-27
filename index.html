@@ -404,16 +404,20 @@ window.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="rsvp">
-        <form>
-            <input type="text" placeholder="Imię i nazwisko" required>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="01711c67-ed8b-4146-8514-173b2404ad2e">
 
-            <select required>
+            <input type="text" name="Gosc" placeholder="Imię i nazwisko" required>
+
+            <select name="Obecnosc" required>
                 <option value="">Czy będziesz obecny?</option>
-                <option value="tak">Tak ❤️</option>
-                <option value="nie">Niestety nie 😢</option>
+                <option value="Tak, potwierdzam obecność ❤️">Tak ❤️</option>
+                <option value="Niestety nie będę mógł/mogła przybyć 😢">Niestety nie 😢</option>
             </select>
 
-            <textarea rows="5" placeholder="Wiadomość dla Pary Młodej"></textarea>
+            <textarea name="Wiadomosc" rows="5" placeholder="Wiadomość dla Pary Młodej"></textarea>
+
+            <input type="hidden" name="subject" value="Nowe potwierdzenie RSVP od gościa!">
 
             <button type="submit">Wyślij RSVP</button>
         </form>
