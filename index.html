@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aleksandra & Miłosz — Nasz Ślub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#fdfcfb; /* Delikatne, ciepłe tło alabastrowe */
+    color:#2b2b2b;
+    line-height:1.6;
+}
+
+h1,h2,h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    color: #3d4a3e; /* Głęboka, elegancka zieleń do nagłówków */
+}
+
+.hero{
+    height:100vh;
+    background:url('https://i.imgur.com/KsorFpX.jpeg') center/cover no-repeat;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(40, 50, 41, 0.4); /* Lekko szałwiowy filtr na zdjęcie */
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:5rem;
+    letter-spacing:2px;
+    color: #ffffff;
+}
+
+.hero p{
+    margin-top:20px;
+    font-size:1.3rem;
+}
+
+.date{
+    margin-top:25px;
+    font-size:1.1rem;
+    letter-spacing:3px;
+    border-top: 1px solid rgba(255,255,255,0.4);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding: 8px 0;
+    display: inline-block;
+}
+
+.section{
+    padding:90px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:3rem;
+    margin-bottom:10px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Subtelna linia ozdobna pod nagłówkami */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: #9CAF88; /* Pastelowa szałwia */
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.count-box{
+    background:#f3f6f1; /* Bardzo jasna szałwia dla kontrastu */
+    padding:30px;
+    width:140px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(156, 175, 136, 0.15);
+    border: 1px solid rgba(156, 175, 136, 0.2);
+}
+
+.count-box span{
+    display:block;
+    font-size:3rem;
+    font-weight:bold;
+    color: #6b7f59; /* Ciemniejsza szałwia na cyfry */
+}
+
+.timeline{
+    display:grid;
+    gap:25px;
+}
+
+.timeline-item{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.04);
+    border-left: 5px solid #9CAF88; /* Szałwiowy akcent z boku */
+}
+
+.timeline-item h3{
+    margin-bottom:10px;
+    color: #556656;
+}
+
+.location{
+    text-align:center;
+}
+
+.location iframe{
+    width:100%;
+    height:400px;
+    border:none;
+    border-radius:20px;
+    margin-top:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+}
+
+.rsvp{
+    background:#f3f6f1; /* Jasno-szałwiowe tło formularza */
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(156, 175, 136, 0.1);
+    max-width:700px;
+    margin:auto;
+    border: 1px solid rgba(156, 175, 136, 0.2);
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+input,textarea,select{
+    padding:16px;
+    border-radius:12px;
+    border:1px solid #ced6cb;
+    font-size:1rem;
+    font-family:'Montserrat',sans-serif;
+    background: white;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #9CAF88;
+    box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.2);
+}
+
+button{
+    background:#9CAF88; /* Główny kolor: Pastelowa Szałwia */
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow: 0 5px 15px rgba(156, 175, 136, 0.3);
+}
+
+button:hover{
+    background:#839671; /* Ciemniejsza szałwia po najechaniu myszką */
+    box-shadow: 0 5px 20px rgba(131, 150, 113, 0.4);
+}
+
+.faq{
+    display:grid;
+    gap:20px;
+}
+
+.faq-item{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.03);
+    border: 1px solid #f0f4ef;
+}
+
+.faq-item h3 {
+    color: #556656;
+    margin-bottom: 8px;
+}
+
+footer{
+    padding:60px 40px;
+    text-align:center;
+    color:#738274;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    background: #f3f6f1;
+}
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:3rem;
+    }
+    .section-title h2{
+        font-size:2.2rem;
+    }
+    .rsvp {
+        padding: 30px 20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <h1>Aleksandra & Miłosz</h1>
+        <p>Z radością zapraszamy Was na nasz ślub</p>
+        <div class="date">31 LIPCA 2027</div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Odliczanie</h2>
+    </div>
+
+    <div class="countdown">
+        <div class="count-box">
+            <span id="days">0</span>
+            dni
+        </div>
+
+        <div class="count-box">
+            <span id="hours">0</span>
+            godzin
+        </div>
+
+        <div class="count-box">
+            <span id="minutes">0</span>
+            minut
+        </div>
+
+        <div class="count-box">
+            <span id="seconds">0</span>
+            sekund
+        </div>
+    </div>
+</section>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+    const weddingDate = new Date("Jul 31, 2027 17:00:00").getTime();
+
+    const timer = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("days").innerHTML = 0;
+            document.getElementById("hours").innerHTML = 0;
+            document.getElementById("minutes").innerHTML = 0;
+            document.getElementById("seconds").innerHTML = 0;
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+    }, 1000);
+});
+</script>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Plan Dnia</h2>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>17:00 — Ceremonia</h3>
+            <p>Kościół pw. Świętej Trójcy, Żuromin</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>18:00 — Wesele</h3>
+            <p>Sala Weselna Atmosfera</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>20:00 — Pierwszy Taniec</h3>
+            <p>Zapraszamy na wspólne świętowanie</p>
+        </div>
+    </div>
+</section> <section class="section location">
+    <div class="section-title">
+        <h2>Lokalizacja</h2>
+    </div>
+
+    <div style="margin-bottom:70px;">
+        <h3 style="margin-bottom:15px;">Kościół pw. Świętej Trójcy</h3>
+        <p>Żuromin</p>
+        
+        <iframe src="https://maps.google.com/maps?q=Kościół%20Świętej%20Trójcy%20Żuromin&z=15&output=embed"></iframe>
+
+        <a href="https://maps.app.goo.gl/NgtTSNPYdj9B1hYS9" target="_blank" style="text-decoration:none;">
+            <button style="margin-top:20px;">Nawiguj do Kościoła</button>
+        </a>
+    </div>
+
+    <div>
+        <h3 style="margin-bottom:15px;">Sala Weselna Atmosfera</h3>
+        <p>Żuromin</p>
+        
+        <iframe src="https://maps.google.com/maps?q=Atmosfera%20Żuromin&z=15&output=embed"></iframe>
+
+        <a href="https://maps.app.goo.gl/f6vTgjxLsadpFPqb9" target="_blank" style="text-decoration:none;">
+            <button style="margin-top:20px;">Nawiguj do Sali</button>
+        </a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Nasze Chwile</h2>
+    </div>
+
+    <div class="gallery">
+        <img src="https://i.imgur.com/4BocwSM.jpeg" alt="Nasze zdjęcie 1">
+        <img src="https://i.imgur.com/aODNE0j.jpeg" alt="Nasze zdjęcie 2">
+        <img src="https://i.imgur.com/5T7ccfc.jpeg" alt="Nasze zdjęcie 3">
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Potwierdzenie Obecności</h2>
+    </div>
+
+    <div class="rsvp">
+        <form>
+            <input type="text" placeholder="Imię i nazwisko" required>
+
+            <select required>
+                <option value="">Czy będziesz obecny?</option>
+                <option value="tak">Tak ❤️</option>
+                <option value="nie">Niestety nie 😢</option>
+            </select>
+
+            <textarea rows="5" placeholder="Wiadomość dla Pary Młodej"></textarea>
+
+            <button type="submit">Wyślij RSVP</button>
+        </form>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>FAQ</h2>
+    </div>
+
+    <div class="faq">
+        <div class="faq-item">
+            <h3>Czy zapewniamy nocleg?</h3>
+            <p>Tak, dla gości spoza miasta przygotowaliśmy nocleg.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Dress code</h3>
+            <p>Elegancki / garden party.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Czy można przyjechać z dziećmi?</h3>
+            <p>Oczywiście ❤️</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    Aleksandra & Miłosz — 2027
+</footer>
+
+</body>
+</html>
